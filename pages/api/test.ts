@@ -5,7 +5,7 @@ type TestRes = {
   content: string
 }
 
-const handler = (req: NextApiRequest, res: NextApiResponse<TestRes>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<TestRes>) => {
   const result: TestRes = {
     title: `id: ${req.query.id}, authorization header: ${req.headers.authorization}`,
     content: `body[test]: ${req.body['test']}, cookie[test]: ${req.cookies.test}`,
@@ -13,7 +13,9 @@ const handler = (req: NextApiRequest, res: NextApiResponse<TestRes>) => {
   console.log('つながった！！')
   console.log(req.body.name)
   console.log(req.body.age)
-  res.status(200).send(result)
+  const response = await fetch('https://jsonplaceholder.typicode.com/users/')
+  const users = await response.json()
+  res.status(200).send(users)
 }
 
 export default handler
