@@ -19,6 +19,14 @@ model Post {
   authorId  String?
 }
 
+model ToDoList {
+  id        Int      @id @default(autoincrement()) @map("todolistId")
+  content   String?
+  createdAt DateTime @default(now())
+  
+  @@map(name: "todolist")
+}
+
 model User {
   id            String       @default(cuid()) @id
   name          String?
@@ -26,5 +34,6 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   posts         Post[]
+
   @@map(name: "users")
 }
