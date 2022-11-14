@@ -19,9 +19,20 @@ const Title = styled.div`
   color: #000;
   text-align: center;
 `
+const TodoArea = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 540px;
+  margin: 0;
+  margin-right: -50%;
+  background-color: #e3e3e3;
+  transform: translate(-50%, -50%);
+`
 const Do = styled.li`
+  padding-left: 20px;
   font-size: 30px;
-  text-align: center;
 `
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -33,6 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
 type PostProps = {
   id: number
   content: string
+  createdAt: string
 }
 
 type Props = {
@@ -40,14 +52,6 @@ type Props = {
 }
 
 const Home: NextPage<Props> = (props) => {
-  // async function main() {
-  //   const allTodo = await prisma.toDoList.findMany()
-  //   console.log(allTodo)4
-  // }
-  // useEffect(() => {
-  //   const allTodo = prisma.toDoList.findMany()
-  //   console.log(allTodo)
-  // }, [])
   return (
     <Container>
       <Head>
@@ -55,9 +59,17 @@ const Home: NextPage<Props> = (props) => {
       </Head>
       <Main>
         <Title>Todoリスト</Title>
-        {props.list.map((post) => (
-          <Do key={post.id}>{post.content}</Do>
-        ))}
+        <TodoArea>
+          {props.list.map((post) => (
+            <>
+              <Do key={post.id}>
+                {post.id}.&nbsp;{post.content}&emsp;
+                {post.createdAt}
+              </Do>
+              {/* <Delete key={post.id} data={post} /> */}
+            </>
+          ))}
+        </TodoArea>
       </Main>
     </Container>
   )
