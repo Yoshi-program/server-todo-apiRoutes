@@ -11,7 +11,7 @@ const Container = styled.div`
   min-height: 100vh;
 `
 const Main = styled.div`
-  height: 100vh;
+  height: 90vh;
   background-color: #b6edff;
 `
 const Title = styled.div`
@@ -29,6 +29,23 @@ const TodoArea = styled.div`
   margin-right: -50%;
   background-color: #e3e3e3;
   transform: translate(-50%, -50%);
+`
+const AddTodoText = styled.input`
+  position: static;
+  width: 300px;
+  height: 50px;
+  margin: 10px;
+  font-size: 25px;
+  vertical-align: middle;
+  background-color: #c7c7c7;
+`
+const AddTodoBtn = styled.button`
+  position: static;
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  font-size: 30px;
+  background-color: green;
 `
 const Do = styled.li`
   padding-left: 20px;
@@ -60,14 +77,13 @@ const Home: NextPage<Props> = (props) => {
       <Main>
         <Title>Todoリスト</Title>
         <TodoArea>
+          <AddTodoText />
+          <AddTodoBtn>追加</AddTodoBtn>
           {props.list.map((post) => (
-            <>
-              <Do key={post.id}>
-                {post.id}.&nbsp;{post.content}&emsp;
-                {post.createdAt}
-              </Do>
-              {/* <Delete key={post.id} data={post} /> */}
-            </>
+            <Do key={post.id}>
+              {post.id}.&nbsp;{post.content}&emsp;
+              {post.createdAt}
+            </Do>
           ))}
         </TodoArea>
       </Main>
