@@ -23,7 +23,6 @@ export const deleteStaticProps = async (id: number) => {
 }
 
 const Delete: React.FC<{ data: DeleteProps }> = ({ data }) => {
-  // const authorName = post.author ? post.author.name : 'Unknown author'
   return <DeleteButton onClick={() => deleteStaticProps(data.id)}>削除</DeleteButton>
 }
 
